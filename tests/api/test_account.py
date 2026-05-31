@@ -1,11 +1,11 @@
 import pytest
+import allure
 
 from tests.conftest import api_client
 from utils.data_factory import user_payload
 
-"API-011 创建账户"
+@allure.title("API-011 创建账户")
 @pytest.mark.api
-# pytest fixture 的依赖注入机制
 def test_create_account(api_client):
     payload=user_payload()
     response = api_client.post("/createAccount",data=payload)
@@ -15,7 +15,7 @@ def test_create_account(api_client):
     assert "created" in body.get("message","").lower()
 
 
-"API-014 获取用户信息"
+@allure.title("API-014 查询账户信息")
 @pytest.mark.api
 def test_get_user_detail(api_client,test_user):
         user_email = test_user["email"]
@@ -23,20 +23,16 @@ def test_get_user_detail(api_client,test_user):
             "/getUserDetailByEmail",
             params={"email": user_email}
         )
-        # 1. 状态码断言
         assert response.status_code == 200
-        # 2. 获取返回数据
         result = response.json()
-        # 3. 业务断言（正确写法！）
         assert result["responseCode"] == 200
         assert result["user"]["email"] == user_email
         assert result["user"]["name"] == test_user["name"]
 
 
-"API-013 更新账户信息"
+@allure.title("API-013 更新账户信息")
 @pytest.mark.api
 def test_update_account(api_client, test_user):
-    # 准备更新数据
     new_name = "UPDATED_NAME"
     update_data = {
         "name": new_name,
@@ -63,13 +59,20 @@ def test_update_account(api_client, test_user):
     assert user["name"] == new_name, "用户名称未更新成功"
 
 
-"API-007 使用有效详细信息登录"
+@allure.title("API-012 删除账户")
 @pytest.mark.api
-def test_login_with_valid_details(api_client,test_user):
-    response=api_client.post("/verifyLogin",data={"email":test_user["email"],"password":test_user["password"]})
-
+def test_delete_account(api_client,test_user):
+    response=api_client.delete("/deleteAccount",data={"email":test_user["email"],"password":test_user["password"]})
     assert response.status_code == 200
+    body=response.json()
+    assert body.get("responseCode") == 200
+    assert "deleted" in body.get("message","").lower()
 
-    result=response.json()
-    assert result["responseCode"] == 200
-    assert "exists" in result.get("message","").lower()
+    inspection=api_client.post(
+        "/verifyLogin",
+        data={"email": test_user["email"], "password": test_user["password"]}
+    )
+    b=inspection.json()
+    assert b.get("responseCode")==404
+
+
