@@ -47,6 +47,10 @@ jobs:
         run: |
           python -m playwright install --with-deps chromium
 
+      - name: Install Allure Bin
+        run: |
+          sudo apt update && sudo apt install -y allure
+
       - name: Mk report folder
         run: mkdir -p ${{ env.ALLURE_RES_DIR }}
 
@@ -58,8 +62,7 @@ jobs:
 
       - name: Generate Allure Report
         if: always()
-        run: |
-          python -m allure generate ${{ env.ALLURE_RES_DIR }} -o ${{ env.ALLURE_REPORT_DIR }} --clean
+        run: allure generate ${{ env.ALLURE_RES_DIR }} -o ${{ env.ALLURE_REPORT_DIR }} --clean
 
       - name: Upload Report
         if: always()
