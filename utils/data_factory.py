@@ -1,10 +1,10 @@
 import random
 import string
-from datetime import datetime,UTC
+from datetime import datetime,timezone
 
 
 def unique_email(prefix : str = "autotest") -> str :
-    timestamp=datetime.now(UTC).strftime("%Y%m%d%H%M%S")
+    timestamp=datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
     suffix="".join(random.choices(string.ascii_lowercase + string.digits,k = 6))
     return f"{prefix}_{timestamp}_{suffix}@example.com"
 
