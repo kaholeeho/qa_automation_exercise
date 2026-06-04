@@ -40,11 +40,11 @@ def test_delete_to_login(api_client):
     assert body["responseCode"] == 405
     assert "not supported" in body.get("message","").lower()
 
-# @allure.title("API-010 登录校验-错误账号")
-# @pytest.mark.api
-# def test_login_with_invalid_details(api_client,test_user):
-#     response=api_client.post("/verifyLogin",data={"email":test_user["email"],"password":"Pass123"})
-#     assert response.status_code == 200
-#     body=response.json()
-#     assert body.get("responseCode") == 404
-#     assert "not found" in body.get("message","").lower()
+@allure.title("API-010 登录校验-错误账号")
+@pytest.mark.api
+def test_login_with_invalid_details(api_client,test_user):
+    response=api_client.post("/verifyLogin",data={"email":test_user["email"],"password":"Pass123"})
+    assert response.status_code == 200
+    body=response.json()
+    assert body.get("responseCode") == 404
+    assert "not found" in body.get("message","").lower()
