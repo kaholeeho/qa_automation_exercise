@@ -42,14 +42,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install allure-pytest allure-python-parser
 
       - name: Install Playwright browser
         run: |
           python -m playwright install --with-deps chromium
-
-      - name: Install Allure Bin
-        run: |
-          sudo apt update && sudo apt install -y allure
 
       - name: Mk report folder
         run: mkdir -p ${{ env.ALLURE_RES_DIR }}
@@ -59,10 +56,14 @@ jobs:
 
       - name: Run UI Test
         run: pytest -m ui --alluredir=${{ env.ALLURE_RES_DIR }} --disable-warnings
-
       - name: Generate Allure Report
         if: always()
-        run: allure generate ${{ env.ALLURE_RES_DIR }} -o ${{ env.ALLURE_REPORT_DIR }} --clean
+        run: |
+          pip install allure-commandline
+          python -c "
+          import allure
+          allure.generate('${{ env.ALLURE_RES_DIR }}', '${{ env.ALLURE_REPORT_DIR }}', clean=True)
+          "
 
       - name: Upload Report
         if: always()
