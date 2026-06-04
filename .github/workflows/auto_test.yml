@@ -1,5 +1,6 @@
 name: QA Automation Suite CI
 
+name: API&UI自动化测试流水线
 on:
   push:
     branches: [main, master]
@@ -7,7 +8,7 @@ on:
       - tests/**
       - core/**
       - utils/**
-      - configs/config.json
+      - config.json
       - requirements.txt
       - .github/workflows/auto_test.yml
   pull_request:
@@ -34,6 +35,7 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
+
       - name: Cache pip dependencies
         uses: actions/cache@v4
         with:
@@ -46,7 +48,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: "pip"
 
       - name: Install python dependencies
         run: |
@@ -58,7 +59,7 @@ jobs:
           python -m playwright install --with-deps chromium
 
       - name: Install Allure CLI
-        uses: qameta/allure-action@master
+        uses: qameta-io/allure-action@master
 
       - name: Make report dir
         run: mkdir -p ${{ env.ALLURE_RES_DIR }}
