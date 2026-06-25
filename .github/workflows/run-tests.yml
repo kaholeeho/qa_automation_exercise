@@ -33,12 +33,20 @@ jobs:
         run: |
           pytest -m api --alluredir=allure-results
 
-      - name: 上传 Allure 测试报告
+      - name: 安装 Allure 命令行
+        run: |
+          npm install -g allure-commandline
+
+      - name: 生成 Allure HTML 报告
+        run: |
+            allure generate allure-results -o allure-report --clean
+
+      - name: 上传 Allure HTML 报告
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: allure-report-api
-          path: allure-results
+                name: allure-html-report
+                path: allure-report   
   ui-tests:
      name: 执行 UI 界面测试
      runs-on: ubuntu-latest
