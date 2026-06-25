@@ -1,0 +1,6 @@
+{
+  "method": "GET",
+  "url": "https://automationexercise.com/api/brandsList",
+  "params": {},
+  "data": {}
+}

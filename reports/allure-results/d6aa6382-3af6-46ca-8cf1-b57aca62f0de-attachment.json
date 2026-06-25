@@ -1,0 +1,8 @@
+{
+  "method": "POST",
+  "url": "https://automationexercise.com/api/verifyLogin",
+  "params": {},
+  "data": {
+    "password": "Pass123"
+  }
+}

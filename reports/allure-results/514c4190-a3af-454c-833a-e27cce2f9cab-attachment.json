@@ -1,0 +1,9 @@
+{
+  "method": "POST",
+  "url": "https://automationexercise.com/api/verifyLogin",
+  "params": {},
+  "data": {
+    "email": "autotest_20260625072705_8zcl7h@example.com",
+    "password": "Pass1234!"
+  }
+}

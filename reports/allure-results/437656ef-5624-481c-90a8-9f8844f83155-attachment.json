@@ -1,0 +1,8 @@
+{
+  "method": "POST",
+  "url": "https://automationexercise.com/api/searchProduct",
+  "params": {},
+  "data": {
+    "search_product": "tshirt"
+  }
+}
