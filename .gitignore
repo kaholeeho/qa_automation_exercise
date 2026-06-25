@@ -1,7 +1,33 @@
-.venv/
+# Python
 __pycache__/
 *.pyc
-.env
-reports/
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# IDE
 .idea/
 .vscode/
+*.iml
+
+# Local config
+.env
+
+# Test reports
+reports/
+allure-results/
+
+# OS junk
+.DS_Store
+Thumbs.db
