@@ -2,7 +2,5 @@ pytest
 requests
 allure-pytest
 playwright
-<<<<<<< HEAD
 python-dotenv
-=======
->>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
+

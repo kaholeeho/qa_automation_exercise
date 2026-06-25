@@ -1,9 +1,0 @@
-{
-  "method": "DELETE",
-  "url": "https://automationexercise.com/api/deleteAccount",
-  "params": {},
-  "data": {
-    "email": "autotest_20260625072710_frq8hu@example.com",
-    "password": "Pass1234!"
-  }
-}

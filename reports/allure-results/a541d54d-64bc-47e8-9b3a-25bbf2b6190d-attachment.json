@@ -1,8 +1,0 @@
-{
-  "method": "GET",
-  "url": "https://automationexercise.com/api/getUserDetailByEmail",
-  "params": {
-    "email": "autotest_20260625072705_8zcl7h@example.com"
-  },
-  "data": {}
-}

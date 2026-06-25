@@ -8,11 +8,7 @@ def unique_email(prefix : str = "autotest") -> str :
     suffix="".join(random.choices(string.ascii_lowercase + string.digits,k = 6))
     return f"{prefix}_{timestamp}_{suffix}@example.com"
 
-<<<<<<< HEAD
 
-=======
-# 自己扩展 登录请求体、产品请求体……
->>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
 def login_payload():
     pass
 def product_payload():
