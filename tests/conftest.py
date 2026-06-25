@@ -5,7 +5,11 @@ from core.api_client import ApiClient
 from utils.config import load_config
 from utils.data_factory import user_payload
 
+<<<<<<< HEAD
 #提供资源
+=======
+
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
 @pytest.fixture(scope="session")
 def config() -> dict:
     return load_config()
@@ -16,6 +20,7 @@ def api_client(config:dict):
     return ApiClient()
 
 
+<<<<<<< HEAD
 # @pytest.fixture(scope="function")
 # def test_user(api_client):
 #     payload = user_payload()
@@ -23,6 +28,20 @@ def api_client(config:dict):
 #     yield payload
 #     api_client.delete(endpoint="/deleteAccount",
 #                       data={"email":payload["email"],"password":payload["password"]},)
+=======
+@pytest.fixture(scope="session")
+def test_user(api_client):
+    payload = user_payload()
+    api_client.post("/createAccount",data=payload)
+    return payload
+
+
+
+
+
+
+
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
 
 
 @pytest.fixture(scope="session")
@@ -49,6 +68,7 @@ def page(browser):
     context.close()
 
 
+<<<<<<< HEAD
 @pytest.fixture(scope="function")
 def test_user(api_client):
     payload = user_payload()
@@ -68,3 +88,16 @@ def test_user(api_client):
 #         endpoint="/deleteAccount",
 #         data={"email": payload["email"], "password": payload["password"]},
 #     )
+=======
+@pytest.fixture
+def ui_user(config):
+    payload = user_payload()
+    api_client = ApiClient()
+    response = api_client.post("/createAccount", data=payload)
+    assert response.status_code == 200, f"创建用户失败: {response.text}"
+    yield payload
+    api_client.delete(
+        endpoint="/deleteAccount",
+        data={"email": payload["email"], "password": payload["password"]},
+    )
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe

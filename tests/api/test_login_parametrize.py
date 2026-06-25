@@ -8,7 +8,11 @@ import allure
         ({"password": "Pass123"}, 400, "email"),
         ({"email": "any@example.com"}, 400, "password"),
         ({"email": "nonexist@example.com", "password": "Pass123"}, 404, "not found"),
+<<<<<<< HEAD
         ({"email": "", "password": ""}, 404, "not found"),
+=======
+        ({"email": "", "password": ""}, 400, "email"),
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
     ]
 )
 @allure.title("登录异常场景测试")
@@ -16,7 +20,10 @@ def test_login_exception_scenarios(api_client, payload, expected_code, expected_
     response = api_client.post("/verifyLogin", data=payload)
     assert response.status_code == 200
     body = response.json()
+<<<<<<< HEAD
     print(response.json())
+=======
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
     assert body.get("responseCode") == expected_code
     assert expected_msg_keyword in body.get("message", "").lower()
 

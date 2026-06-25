@@ -1,6 +1,9 @@
 import requests
 from utils.config import load_config
+<<<<<<< HEAD
 from utils.allure_helper import attach_http
+=======
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
 
 class ApiClient:
 
@@ -32,7 +35,10 @@ class ApiClient:
             headers=headers,
             timeout=self.timeout
         )
+<<<<<<< HEAD
         attach_http(method,url,params,data,response)
+=======
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
         return response
 
     def get(self,endpoint : str,params : dict | None = None,headers: dict | None = None):

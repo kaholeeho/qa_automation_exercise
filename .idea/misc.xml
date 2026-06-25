@@ -3,5 +3,9 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.10 (QA_auto_suite)" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 virtualenv at E:\桌面\qa_automation_exercise-master\.venv" project-jdk-type="Python SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 virtualenv at E:\桌面\qa_automation_suite\.venv" project-jdk-type="Python SDK" />
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
 </project>

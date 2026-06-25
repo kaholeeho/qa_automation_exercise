@@ -3,10 +3,17 @@ import allure
 
 @allure.title("UI-004 登录主流程")
 @pytest.mark.ui  # 标记为 UI 测试，方便分类运行
+<<<<<<< HEAD
 def test_login_flow(page, ui_base_url, test_user):
     page.goto(f"{ui_base_url}/login", wait_until="domcontentloaded")
     page.fill("[data-qa='login-email']", test_user["email"])
     page.fill("[data-qa='login-password']", test_user["password"])
+=======
+def test_login_flow(page, ui_base_url, ui_user):
+    page.goto(f"{ui_base_url}/login", wait_until="domcontentloaded")
+    page.fill("[data-qa='login-email']", ui_user["email"])
+    page.fill("[data-qa='login-password']", ui_user["password"])
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
     page.click("[data-qa='login-button']")
     page.wait_for_selector("text=Logged in as", timeout=15000)
     assert page.locator("a[href='/logout']").is_visible()

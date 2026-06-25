@@ -1,9 +1,12 @@
 import json
 import os
 from pathlib import Path
+<<<<<<< HEAD
 from dotenv import load_dotenv
 
 load_dotenv()
+=======
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
 
 DEFAULT_CONFIG_PATH=Path(__file__).resolve().parents[1] /"configs"/"config.json"
 

@@ -8,6 +8,7 @@ from utils.data_factory import user_payload
 @pytest.mark.api
 def test_create_account(api_client):
     payload=user_payload()
+<<<<<<< HEAD
     try:
         response = api_client.post("/createAccount", data=payload)
         assert response.status_code == 200
@@ -19,6 +20,13 @@ def test_create_account(api_client):
     finally:
         api_client.delete("/deleteAccount",data={"email":payload["email"],
                                                  "password":payload["password"]})
+=======
+    response = api_client.post("/createAccount",data=payload)
+    assert response.status_code == 200
+    body = response.json()
+    assert body.get("responseCode") == 201
+    assert "created" in body.get("message","").lower()
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
 
 
 @allure.title("API-014 查询账户信息")
@@ -35,6 +43,10 @@ def test_get_user_detail(api_client,test_user):
         assert result["user"]["email"] == user_email
         assert result["user"]["name"] == test_user["name"]
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
 @allure.title("API-013 更新账户信息")
 @pytest.mark.api
 def test_update_account(api_client, test_user):
@@ -63,6 +75,7 @@ def test_update_account(api_client, test_user):
     user = get_resp.json()["user"]
     assert user["name"] == new_name, "用户名称未更新成功"
 
+<<<<<<< HEAD
 # @allure.title("API-012 删除账户")
 # @pytest.mark.api
 # def test_delete_account(api_client,test_user):
@@ -78,5 +91,23 @@ def test_update_account(api_client, test_user):
 #     )
 #     b=inspection.json()
 #     assert b.get("responseCode")==404
+=======
+
+@allure.title("API-012 删除账户")
+@pytest.mark.api
+def test_delete_account(api_client,test_user):
+    response=api_client.delete("/deleteAccount",data={"email":test_user["email"],"password":test_user["password"]})
+    assert response.status_code == 200
+    body=response.json()
+    assert body.get("responseCode") == 200
+    assert "deleted" in body.get("message","").lower()
+
+    inspection=api_client.post(
+        "/verifyLogin",
+        data={"email": test_user["email"], "password": test_user["password"]}
+    )
+    b=inspection.json()
+    assert b.get("responseCode")==404
+>>>>>>> 2a74e519d6dd037b66d5f0e26320dc32390b90fe
 
 
