@@ -32,7 +32,8 @@ class ApiClient:
             data=data,
             json=json,
             headers=headers,
-            timeout=self.timeout
+            timeout=self.timeout,
+            allow_redirects = False
         )
 
         attach_http(method,url,params,data,response)
